@@ -1,8 +1,7 @@
-#switch-box {
+.switch-box {
   margin-top: 10px;
-  float:left;
 }
-#device-type-span {
+.device-type-span {
     display: inline-block;
     vertical-align: center;
     top: 50%;
@@ -12,7 +11,7 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 110px;
+  width: 70px;
   height: 34px;
 }
 
@@ -51,9 +50,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(75px);
-  -ms-transform: translateX(75px);
-  transform: translateX(75px);
+  -webkit-transform: translateX(35px);
+  -ms-transform: translateX(35px);
+  transform: translateX(35px);
 }
 
 /*------ ADDED CSS ---------*/

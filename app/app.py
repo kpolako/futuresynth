@@ -1,7 +1,8 @@
-from flask import Flask, Blueprint, request, render_template
-import logging, sys, json
+from flask import Flask, Blueprint, request, render_template, current_app
+import logging, sys
 from flask_cors import CORS
-from .lighthouse import lighthouse
+from app.audits import lighthouse_audit, http_audit, selenium_audit
+from app.conf import run_browsermob
 
 
 bp_app = Blueprint('app', __name__, static_folder='static')
@@ -28,7 +29,12 @@ def route_home():
 def route_receive_test():
     test_conf = request.get_json()
     print(test_conf)
-    result = lighthouse.run_lighthouse(test_conf)
+    result = None
+    if test_conf['type'] == 'lighthouse':
+        result = lighthouse_audit.run_lighthouse(test_conf)
+    elif test_conf['type'] == 'selenium':
+        result = selenium_audit.run_selenium(test_conf, current_app.config['proxy'], current_app.config['client'])
+        selenium_audit.terminate_browsermob()
     return result
 
 
@@ -37,4 +43,11 @@ def create_app():
     CORS(app)
     app.register_blueprint(bp_app)
     app.register_blueprint(bp_test)
+    proxy = run_browsermob.ProxyManager()
+    proxy.start_server()
+    client = proxy.start_client()
+    client.new_har("options={'captureContent': True}")
+    with app.app_context():
+        current_app.config['proxy'] = proxy
+        current_app.config['client'] = client
     return app
