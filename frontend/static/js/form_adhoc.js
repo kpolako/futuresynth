@@ -19,13 +19,8 @@ $(function(){
         } else {
             device = "desktop";
         }
-        var testType = "";
-        var ifChecked = document.getElementById("togBtn-testtype").checked;
-        if (ifChecked == true) {
-            testType = "selenium";
-        } else {
-            testType = "lighthouse";
-        }
+
+        var testType = $('input[name=testtype]:checked').val();
 
         var inputUrl = $("#input-url").val();
         jsonData = {
@@ -36,7 +31,7 @@ $(function(){
 
         var request = $.ajax({
             type: "POST",
-            url: "/receive_test",
+            url: "http://127.0.0.1:4999/execute_test_run",
             data: JSON.stringify(jsonData),
             headers: {'Content-type': 'application/json'},
         });
@@ -55,14 +50,27 @@ $(function(){
             var html = '<div style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%; display: inline-block; width: 48%; vertical-align: top;">';
             html += download_html;
 
+            var timingMarks = '<h4>Timing marks:</h4><span>'
+            var paintMetrics = '<h4>Paint metrics:</h4><span>'
+            var calculatedMetrics = '<h4>Calculated metrics:</h4><span>'
+
             for (var key in data['metrics']) {
                 if (data['metrics'].hasOwnProperty(key)) {
-                    console.log(data['metrics'][key]['name'] + " -> " + data['metrics'][key]['value']);
-                    html += ''+data['metrics'][key]['name']+': '+data['metrics'][key]['value']+'<br>';
+                    if (data['metrics'][key]['type'] == 'timing_marks') {
+                        timingMarks += ''+data['metrics'][key]['name']+': '+data['metrics'][key]['value']+'<br>';
+                    } else if (data['metrics'][key]['type'] == 'paint_metrics') {
+                        paintMetrics += ''+data['metrics'][key]['name']+': '+data['metrics'][key]['value']+'<br>';
+                    } else if (data['metrics'][key]['type'] == 'calculated') {
+                        calculatedMetrics += ''+data['metrics'][key]['name']+': '+data['metrics'][key]['value']+'<br>';
+                    }
+//                    console.log(data['metrics'][key]['name'] + " -> " + data['metrics'][key]['value']);
                 }
             }
+            timingMarks += '</span>';
+            paintMetrics += '</span>';
+            calculatedMetrics += '</span>';
 
-            html += '</div>';
+            html += timingMarks+paintMetrics+calculatedMetrics+'</div>';
 
             setTimeout(function(){
                 $(html).hide().appendTo(".content_div").fadeIn(1500);}, 300);

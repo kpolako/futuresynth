@@ -1,0 +1,73 @@
+.btn-holder {
+    clear: both;
+}
+#submit_test {
+    font-family: 'Chakra Petch', sans-serif;
+    margin-bottom: 2vh;
+}
+.switch-box {
+    margin-bottom: 2vh;
+}
+#form_div {
+    margin-top: 2%;
+    text-align: center;
+    justify-content: center;
+    align-items:center;
+}
+#input-url {
+    background-color: transparent;
+    border-color: transparent;
+    color: #d1d1c5;
+    border-bottom: 1px solid #75756b;
+    font-size: 4vh;
+    width: 20vw;
+    font-family: 'Chakra Petch', sans-serif;
+    width: 300px;
+    margin-bottom: 2vh;
+}
+#input-url:focus {
+   border-color: transparent;
+   outline: none !important;
+   color: #d1d1c5;
+   font-family: 'Chakra Petch', sans-serif;
+}
+#input-url:active {
+   border-color: transparent;
+   outline: none !important;
+   color: #d1d1c5;
+   font-family: 'Chakra Petch', sans-serif;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #d1d1c5 !important;
+    font-family: 'Chakra Petch', sans-serif;
+}
+::-webkit-input-placeholder {
+    color: #9666661;
+}
+::-moz-placeholder {
+    color: #9666661;
+}
+:-ms-input-placeholder {
+    color: #9666661;
+}
+::-ms-input-placeholder {
+    color: #9666661;
+}
+::placeholder {
+    color: #9666661;
+    text-align: center;
+}
+.testtypechoice_span {
+    text-align: center;
+}
+.testtypechoice {
+    display: inline-block;
+    margin-bottom: 2vw;
+}
+.cron {
+    margin-bottom: 2vh;
+}

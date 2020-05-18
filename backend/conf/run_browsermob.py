@@ -14,10 +14,12 @@ class ProxyManager:
 
     def start_server(self):
         self.__server.start()
+        print('start proxy server')
         return self.__server
 
     def start_client(self):
         self.__client = self.__server.create_proxy(params={"trustAllServers": "true"})
+        print('start proxy client')
         return self.__client
 
     @property
@@ -44,6 +46,6 @@ def run_selenium(url):
     time.sleep(3)
 
     # print(client.har)
-    print(json.dumps(client.har))
+    # print(json.dumps(client.har))
 
     server.stop()

@@ -1,5 +1,6 @@
-.switch-box {
-  margin-top: 10px;
+:root {
+    --one-color: #60a1a1;
+    --other-color: #496ca3;
 }
 .device-type-span {
     display: inline-block;
@@ -24,7 +25,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #1bd152;
+  background-color: var(--one-color);
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -36,17 +37,17 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: #d1d1c5;
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: #ca2222;
+  background-color: var(--other-color);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #ca2222;
+  box-shadow: 0 0 1px var(--other-color);
 }
 
 input:checked + .slider:before {
@@ -63,7 +64,7 @@ input:checked + .slider:before {
 
 .mobile, .desktop
 {
-  color: white;
+  color: #d1d1c5;
   position: absolute;
   transform: translate(-50%,-50%);
   top: 50%;

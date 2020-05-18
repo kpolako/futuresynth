@@ -7,18 +7,18 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/loader.css') }}" />
     <link href='http://fonts.googleapis.com/css?family=Chakra+Petch&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/form.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/form_plan.js') }}"></script>
 </head>
 <body>
 <div class="menu_div">
-    <p id="logo">Future<br>&nbsp;&nbsp;&nbsp;synth</p>
+    <a id="logo" href="/">Future<br>&nbsp;&nbsp;&nbsp;synth</a><a class="menu_items" href="/">Wykonaj test</a><a class="menu_items" href="/plan_test">Zaplanuj test</a><a class="menu_items" href="/docs">Dokumentacja</a>
 </div>
 <div class="background_div">
     <div class="content_div">
             <div class="form_div" id="form_div">
         <input type="text" placeholder="Wprowadź adres strony" id="input-url">
         <br>
-        <div class="boxes" class="switch-box">
+        <div class="switch-box">
             <span class="device-type-span">desktop</span>
             <label class="switch">
                 <input type="checkbox" id="togBtn-device">
@@ -30,20 +30,27 @@
             <span class="device-type-span">mobile</span>
         </div>
 
-        <div class="boxes" class="switch-box">
-            <span class="device-type-span">lighthouse</span>
-            <label class="switch">
-                <input type="checkbox" id="togBtn-testtype">
-                <div class="slider round">
-                    <span class="lighthouse"></span>
-                    <span class="selenium"></span>
-                </div>
-            </label>
-            <span class="device-type-span">selenium</span>
+        <div class="testtypechoice">
+            <span class="testtypechoice_span">Typ testu:</span><br>
+            <input type="radio" id="lighthouse" name="testtype" value="lighthouse" class="testtypechoice_input">
+            <label for="lighthouse">Lighthouse</label><br>
+            <input type="radio" id="selenium" name="testtype" value="selenium" class="testtypechoice_input">
+            <label for="selenium">Selenium</label><br>
+            <input type="radio" id="http" name="testtype" value="http" class="testtypechoice_input">
+            <label for="http">HTTP</label><br>
+        </div>
+
+        <div class="cron">
+            Wykonuj co <input type="number" min="1" max="2" class="time_number">
+            <select class="time_type">
+                <option value="s">s</option>
+                <option value="m">m</option>
+                <option value="h">h</option>
+            </select>
         </div>
 
         <div class="btn-holder">
-            <button id="submit_test">Wykonaj test</button>
+            <a class="button" id="submit_test">Zaplanuj test</a>
         </div>
 
     </div>
@@ -53,7 +60,7 @@
 
 </div>
 <div class="footer_div">
-    <span class="footer_span">Dokumentacja:<br>Kontakt:</span>
+    <span class="footer_span"><a class="footer_item" target="_blank" href="https://github.com/kpolako/futuresynth">Github</a><br><a>konradpolakowska@gmail.com</a></span>
 </div>
 </body>
 </html>
