@@ -2,21 +2,22 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/index.css') }}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/form_adoc.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/form.css') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/switch.css') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/loader.css') }}" />
     <link href='http://fonts.googleapis.com/css?family=Chakra+Petch&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/form.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/form_adhoc.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/validate_adhoc.js') }}"></script>
 </head>
 <body>
 <div class="menu_div">
-    <a id="logo" href="/">Future<br>&nbsp;&nbsp;&nbsp;synth</a><a class="menu_items" href="/">Wykonaj test</a><a class="menu_items" href="/plan_test">Zaplanuj test</a><a class="menu_items" href="/docs">Dokumentacja</a>
+    <a id="logo" href="/">Future<br>&nbsp;&nbsp;&nbsp;synth</a><a class="menu_items" href="/">Wykonaj test</a><a class="menu_items" href="/plan_test">Zaplanuj test</a><a class="menu_items" href="/tests">Testy</a><a class="menu_items" href="http://localhost:8888/" target="_blank">Wyniki</a><a class="menu_items" href="/docs">Dokumentacja</a>
 </div>
 <div class="background_div">
     <div class="content_div">
             <div class="form_div" id="form_div">
-        <input type="text" placeholder="Wprowadź adres strony" id="input-url">
+                <input type="text" placeholder="Wprowadź adres strony" id="input-url" class="input-text">
         <br>
         <div class="switch-box">
             <span class="device-type-span">desktop</span>
@@ -32,7 +33,7 @@
 
         <div class="testtypechoice">
             <span class="testtypechoice_span">Typ testu:</span><br>
-            <input type="radio" id="lighthouse" name="testtype" value="lighthouse" class="testtypechoice_input">
+            <input type="radio" id="lighthouse" name="testtype" value="lighthouse" class="testtypechoice_input" checked>
             <label for="lighthouse">Lighthouse</label><br>
             <input type="radio" id="selenium" name="testtype" value="selenium" class="testtypechoice_input">
             <label for="selenium">Selenium</label><br>

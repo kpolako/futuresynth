@@ -14,7 +14,7 @@
     justify-content: center;
     align-items:center;
 }
-#input-url {
+.input-text {
     background-color: transparent;
     border-color: transparent;
     color: #d1d1c5;
@@ -25,13 +25,13 @@
     width: 300px;
     margin-bottom: 2vh;
 }
-#input-url:focus {
+.input-text:focus {
    border-color: transparent;
    outline: none !important;
    color: #d1d1c5;
    font-family: 'Chakra Petch', sans-serif;
 }
-#input-url:active {
+.input-text:active {
    border-color: transparent;
    outline: none !important;
    color: #d1d1c5;
@@ -70,4 +70,10 @@ input:-webkit-autofill:active {
 }
 .cron {
     margin-bottom: 2vh;
+}
+.change-color-class-red::-webkit-input-placeholder {
+    color: #e07797;
+}
+.change-color-class-transparent::-webkit-input-placeholder {
+    color: #9666661;
 }

@@ -22,5 +22,4 @@ def run_lighthouse(test_conf):
     metrics['dom_content_loaded'] = {'name': 'DOM Content Loaded', 'value': round(result_dict_metrics['observedDomContentLoaded'], 2)}
     metrics['lighthouse_performance_score'] = {'name': 'Lighthouse Performance Score', 'value': round(result_dict['categories']['performance']['score'], 2)*100}
 
-
-    return {'report': json.dumps(result_dict), 'metrics': metrics, 'description': 'Lighthouse'}
+    return {'report': json.dumps(result_dict), 'metrics': metrics, 'description': 'Lighthouse', 'test_conf': test_conf}

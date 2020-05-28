@@ -1,22 +1,191 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/index.css') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/loader.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/docs.css') }}" />
     <link href='http://fonts.googleapis.com/css?family=Chakra+Petch&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/form.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/docs.js') }}"></script>
 </head>
 <body>
 <div class="menu_div">
-    <a id="logo" href="/">Future<br>&nbsp;&nbsp;&nbsp;synth</a><a class="menu_items" href="/">Wykonaj test</a><a class="menu_items" href="/plan_test">Zaplanuj test</a><a class="menu_items" href="/docs">Dokumentacja</a>
+    <a id="logo" href="/">Future<br>&nbsp;&nbsp;&nbsp;synth</a><a class="menu_items" href="/">Wykonaj test</a><a class="menu_items" href="/plan_test">Zaplanuj test</a><a class="menu_items" href="/tests">Testy</a><a class="menu_items" href="http://localhost:8888/" target="_blank">Wyniki</a><a class="menu_items" href="/docs">Dokumentacja</a>
 </div>
 <div class="background_div">
     <div class="content_div">
+        <div class="left_menu">
+            <div class="left_menu_items" id="menu_test_type"><a>Typy testów</a></div>
+            <div class="left_menu_items" id="menu_metrics"><a>Metryki</a></div>
+            <div class="left_menu_items" id="menu_results"><a>Wyniki</a></div>
+        </div>
+
+        <div class="docs_content" id="test_type_docs">
+            <h3>Typy testów</h3>
+            Futuresynth pozwala na wykonanie zarówno doraźnych testów, jak i zaplanowanych. Są ich 3 rodzaje: "selenium",
+            "lighthouse" oraz "http". Dwa pierwsze typy pozwalają na poznanie podanej strony internetowej pod
+            kątem wydajności, natomiast ostatni pozwala na monitorowanie dostępności (dostępny tylko w przypadku
+            planowanych testów). Wszystkie testy wykonywane są na systemie Windows 10 i symulują pierwsze wejście
+            użytkownika na stronę - czyli nie korzystają z cache ani ciasteczek.<br>
+            <h4>Selenium</h4>
+            Selenium jest biblioteką automatyzującą wykonywanie testów za pomocą przeglądarki.
+            W Futuresynth test wydajnościowy typu "selenium" można wykonać w trybie "desktop" oraz "mobile", gdzie
+            "mobile" oznacza symulacje urządzenia iPhone 6 Plus. <br>Metryki dostępne dla tych testów to:
+            <ul>
+                <li>Connect End</li>
+                <li>Connect Start</li>
+                <li>DOM Complete</li>
+                <li>DOM Content Loaded Event End</li>
+                <li>DOM Content Loaded Event Start</li>
+                <li>DOM Interactive</li>
+                <li>Domain Lookup End</li>
+                <li>Domain Lookup Start</li>
+                <li>Duration</li>
+                <li>Fetch Start</li>
+                <li>Load Event End</li>
+                <li>Load Event Start</li>
+                <li>Redirect End</li>
+                <li>Redirect Start</li>
+                <li>Request Start</li>
+                <li>Response End</li>
+                <li>Response Start</li>
+                <li>Secure Connection Start</li>
+                <li>First Contentful Paint</li>
+                <li>First Paint</li>
+                <li>DNS lookup</li>
+                <li>Redirect Time</li>
+                <li>SSL negotiation</li>
+                <li>TCP Handshake</li>
+                <li>Time to First Byte</li>
+            </ul>
+            Dodatkowo doraźne testy umożliwiają pobranie raportu w postaci pliku HAR z wykonanego zapytania.
+            <h4>Lighthouse</h4>
+            Google Lighthouse jest narzędziem do wykonywania audytów jakościowych stron internetowych.
+            Jest dostępne dla każdego posiadacza przeglądarki Google Chrome - wystarczy wejść na żądaną stronę, otworzyć
+            narzędzia deweloperskie (F12), wybrać zakładkę "Audits" i wygenerować raport. Audyt jest automatyczny
+            tylko do pewnego stopnia, gdyż trzeba go ręcznie uruchomić. Aby temu zaradzić, Google stworzyło
+            wersję tego narzędzia dostępną z poziomu wiersza poleceń - i z tego właśnie korzysta Futuresyth do automatyzacji
+            testów Lighthouse'owych.
+            <br>Metryki zwracane przez te testy to:
+            <ul>
+                <li>DOM Content Loaded</li>
+                <li>Estimated Input Latency</li>
+                <li>First Contentful Paint</li>
+                <li>First CPU Idle</li>
+                <li>First Meaningful Paint</li>
+                <li>First Paint</li>
+                <li>Largest Contentful Paint</li>
+                <li>Lighthouse Performance Score</li>
+                <li>Max Potential First Input Delay</li>
+                <li>Round Trip Time</li>
+                <li>Speed Index</li>
+                <li>Time to First Byte</li>
+                <li>Time to Interactive</li>
+            </ul>
+            Lighthouse pozwala na wykonanie o wiele bardziej kompleksowego testu, jednak jako że Futuresynth
+            skupia się na wydajności stron, to tylko tego typu audyt (Performance) jest wykonywany i tylko powyższe metryki
+            są brane pod uwagę. Dodatkowo doraźne testy umożliwiają pobranie raportu w postaci pliku JSON.
+            <h4>HTTP</h4>
+            Ten test wykonuje jedynie proste zapytanie do podanego zasobu i zapisuje kod odpowiedzi HTTP. Pozwala to
+            na monitorowanie dostępności stron.
+        </div>
+            <div class="docs_content" id="metrics_docs">
+            <div class="metrics_docs_left">
+            <h3>Metryki</h3>
+            <ul>
+                <li class="metric_link connect_end">Connect End</li>
+                <li class="metric_link connect_start">Connect Start</li>
+                <li class="metric_link dns_lookup">DNS lookup</li>
+                <li class="metric_link dom_complete">DOM Complete</li>
+                <li class="metric_link dom_content_loaded">DOM Content Loaded</li>
+                <li class="metric_link dom_content_loaded_event_end">DOM Content Loaded Event End</li>
+                <li class="metric_link dom_content_loaded_event_start">DOM Content Loaded Event Start</li>
+                <li class="metric_link dom_interactive">DOM Interactive</li>
+                <li class="metric_link domain_lookup_end">Domain Lookup End</li>
+                <li class="metric_link domain_lookup_start">Domain Lookup Start</li>
+                <li class="metric_link duration">Duration</li>
+                <li class="metric_link estimated_input_latency">Estimated Input Latency</li>
+                <li class="metric_link fetch_start">Fetch Start</li>
+                <li class="metric_link first_contentful_paint">First Contentful Paint</li>
+                <li class="metric_link first_cpu_idle">First CPU Idle</li>
+                <li class="metric_link first_meaningful_paint">First Meaningful Paint</li>
+                <li class="metric_link first_paint">First Paint</li>
+                <li class="metric_link largest_contentful_paint">Largest Contentful Paint</li>
+                <li class="metric_link lighthouse_performance_score">Lighthouse Performance Score</li>
+                <li class="metric_link load_event_end">Load Event End</li>
+                <li class="metric_link load_event_start">Load Event Start</li>
+                <li class="metric_link max_potential_first_input_delay">Max Potential First Input Delay</li>
+                <li class="metric_link redirect_end">Redirect End</li>
+                <li class="metric_link redirect_start">Redirect Start</li>
+                <li class="metric_link request_start">Request Start</li>
+                <li class="metric_link response_end">Response End</li>
+                <li class="metric_link response_start">Response Start</li>
+                <li class="metric_link secure_connection_start">Secure Connection Start</li>
+                <li class="metric_link speed_index">Speed Index</li>
+                <li class="metric_link redirect_time">Redirect Time</li>
+                <li class="metric_link round_trip_time">Round Trip Time</li>
+                <li class="metric_link ssl_negotiation">SSL negotiation</li>
+                <li class="metric_link tcp_handshake">TCP Handshake</li>
+                <li class="metric_link time_to_first_byte">Time to First Byte</li>
+                <li class="metric_link time_to_interactive">Time to Interactive</li>
+            </ul>
+
+            </div>
+                <div class="metrics_docs_right">
+                    <span class="metric_desc connect_end">Moment, w którym przeglądarka zakończyła nawiązywanie połączenia z serwerem w celu pobrania dokumentu.</span>
+                    <span class="metric_desc connect_start">Moment, w którym przeglądarka rozpoczęła nawiązywanie połączenia z serwerem w celu pobrania dokumentu. </span>
+                    <span class="metric_desc dns_lookup">Czas odnajdowania domeny. Mierzony pomiędzy "Domain Lookup Start" i "Domain Lookup End".</span>
+                    <span class="metric_desc dom_complete">Moment, w którym przeglądarka skończyła pobierać wszystkie zasoby.</span>
+                    <span class="metric_desc dom_content_loaded">Przeglądarka wysyła zdarzenie "DOMContentLoaded" w momencie, w którym HTML i CSS zostały przetworzone i przeglądarka może przystąpić do tworzenia drzewa renderowania.</span>
+                    <span class="metric_desc dom_content_loaded_event_end">Dokładnie po zakończeniu wykonywania się zdarzenia "DOMContentLoaded".</span>
+                    <span class="metric_desc dom_content_loaded_event_start">Dokładnie przed wywołaniem zdarzenia "DOMContentLoaded".</span>
+                    <span class="metric_desc dom_interactive">Moment, w którym drzewo DOM zostało skonstruowane, przeglądarka skończyła parsować dokument HTML i przechodzi do obsługi pozostałych zasobów.</span>
+                    <span class="metric_desc domain_lookup_end">Moment, w którym klient zakończył odnajdowanie domeny.</span>
+                    <span class="metric_desc domain_lookup_start">Moment, w którym klient rozpoczął odnajdowanie domeny.</span>
+                    <span class="metric_desc duration">Czas pomiędzy Load Event End i requestStart.</span>
+                    <span class="metric_desc estimated_input_latency">Szacunkowy czas odpowiedzi aplikacji na interakcję użytkownika podczas 5 sekund w których ładująca się aplikacja jest najbardziej obciążona.</span>
+                    <span class="metric_desc fetch_start">Moment, w którym przeglądarka jest gotowa do pobrania dokumentu używając zapytania HTTP, zaraz przed sprawdzeniem pamięci cache.</span>
+                    <span class="metric_desc first_contentful_paint">Moment, w którym pierwszy tekst bądź obraz zostaje wyrenderowany.</span>
+                    <span class="metric_desc first_cpu_idle">Moment, w którym główny wątek przeglądarki ma wystarczająco dużo zasobów do obsługi interakcji użytkownika.</span>
+                    <span class="metric_desc first_meaningful_paint">Moment, w którym główny element strony zostaje wyrenderowany.</span>
+                    <span class="metric_desc first_paint">Moment, w którym pierwszy piksel strony zostaje wyrenderowany.</span>
+                    <span class="metric_desc largest_contentful_paint">Moment, w którym największy element strony zostaje wyrenderowany.</span>
+                    <span class="metric_desc lighthouse_performance_score">Wynik przyznany przez narzędzie Lighthouse w kategorii Performance w skali od 0 do 100.</span>
+                    <span class="metric_desc load_event_end">Moment, w którym wszystkie zasoby zostały załadowane i zdarzenie “onLoad”, które jest ostatnim zdarzeniem ładującej się strony, się zakończyło.</span>
+                    <span class="metric_desc load_event_start">Moment, w którym wszystkie zasoby zostały załadowane i zdarzenie “onLoad”, które jest ostatnim zdarzeniem ładującej się strony, się rozpoczęło.</span>
+                    <span class="metric_desc max_potential_first_input_delay">Maksymalny czas First Input Delay, którego użytkownicy mogą potencjalnie doświadczać. First Input Delay to czas, w jakim aplikacja odpowiada na interkację użytkownika (np. kliknięcie przycisku bądź użycie pola tesktowego).</span>
+                    <span class="metric_desc redirect_end">Moment dokładnie po otrzymaniu ostatniego bajtu odpowiedzi ostatniego przekierowania (jeżeli wystąpił).</span>
+                    <span class="metric_desc redirect_start">Moment dokładnie przed rozpoczęciem ostatniego przekierowania (jeżeli wystąpił).</span>
+                    <span class="metric_desc redirect_time">Czas pomiędzy redirectStart i redirectEnd.</span>
+                    <span class="metric_desc request_start">Moment, w którym przeglądarka wysyła żądanie pobrania dokumentu z serwera lub pamięci cache.</span>
+                    <span class="metric_desc response_end">Moment, w którym przeglądarka otrzymała ostatni bajt odpowiedzi.</span>
+                    <span class="metric_desc response_start">Moment, w którym przeglądarka otrzymała pierwszy bajt odpowiedzi.</span>
+                    <span class="metric_desc round_trip_time">Czas od wysłania pakietu przez klienta do serwera i z powrotem.</span>
+                    <span class="metric_desc secure_connection_start">Moment dokładnie przed nawiązaniem połączenia metodą "three-way handshake".</span>
+                    <span class="metric_desc speed_index">Wskaźnik określający szybkość renderowania się strony. Sposób jego obliczania można poznać pod <a class="link" target="_blank", href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index">tym adresem</a>.</span>
+                    <span class="metric_desc ssl_negotiation">Czas pomiędzy secureConnectionStart i requestStart.</span>
+                    <span class="metric_desc tcp_handshake">Czas wykonania procedury "three-way handshake".</span>
+                    <span class="metric_desc time_to_first_byte">Czas pomiędzy wysłaniem żądania o zasób a odebraniem pierwszego bajtu odpowiedzi.</span>
+                    <span class="metric_desc time_to_interactive">Moment, w którym główny wątek jest na tyle nieobciążony, że może reagować na interakcje ze strony użytkownika w czasie nie większym niż 50 ms.</span>
+                </div>
+
+        </div>
+            <div class="docs_content" id="results_docs">
+            <h3>Wyniki</h3>
+            Wyniki swojego testu są zapisywane w bazie InfluxDB, a oglądać je możesz za pomocą narzędzia zwanego
+                Chronograf. Aby to zrobić:
+                <ol>
+                    <li>kliknij przycisk "Wyniki" umieszczony w górnym menu, co przekieruje Cię
+                do Chronografu.</li>
+                    <li>kliknij "Explore" po lewej stronie ekranu</li>
+                    <li>wybierz bazę o nazwie "futuresynth.autogen" (pod wykresem i "DB.RetentionPolicy")</li>
+                    <li>rozwiń pomiar w sekcji "Measurement & Tags" odpowiadacy typowi Twojego testu</li>
+                    <li>rozwiń pole "name" i wybierz Twój pomiar</li>
+                    <li>zaznacz metryki, które Cię interesują w sekcji "Fields"</li>
+                </ol>
+        </div>
+
 
     </div>
-
-
 </div>
 <div class="footer_div">
     <span class="footer_span"><a class="footer_item" href="https://github.com/kpolako/futuresynth">Github</a><br><a>konradpolakowska@gmail.com</a></span>

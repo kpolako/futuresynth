@@ -1,6 +1,7 @@
 from flask import Flask, Blueprint, render_template
 import logging, sys
 from flask_cors import CORS
+import requests, json
 
 
 bp_app = Blueprint('app', __name__, static_folder='static')
@@ -31,6 +32,12 @@ def route_plan_test():
 @bp_app.route('/docs', methods=['GET'])
 def route_docs():
     return render_template('docs.html')
+
+
+@bp_app.route('/tests', methods=['GET'])
+def route_all_tests():
+    res = requests.get('http://127.0.0.1:4999/get_confs')
+    return render_template('tests.html', tests=json.loads(res.text))
 
 
 def create_app():

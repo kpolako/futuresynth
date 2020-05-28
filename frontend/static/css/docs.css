@@ -1,0 +1,237 @@
+@font-face {
+    font-family: roadrage;
+    src: url('Road_Rage.otf');
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Chakra Petch', sans-serif;
+}
+.menu_div {
+    background-color: black;
+    height: 20vh;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align:center;
+        -ms-flex-align:center;
+            align-items:center;
+}
+#logo {
+    text-decoration: none;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    line-height: 0.8;
+    display: inline-block;
+    font-family: roadrage;
+    font-size: 8vh;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff38cd), color-stop(#ff56d3), color-stop(#ff6dd9), color-stop(#ff81de), color-stop(#ff93e3), color-stop(#ff93e3), color-stop(#ff93e3), color-stop(#ff93e3), color-stop(#ff81de), color-stop(#ff6dd9), color-stop(#ff56d3), to(#ff38cd));
+    background: -o-linear-gradient(top, #ff38cd, #ff56d3, #ff6dd9, #ff81de, #ff93e3, #ff93e3, #ff93e3, #ff93e3, #ff81de, #ff6dd9, #ff56d3, #ff38cd);
+    background: linear-gradient(to bottom, #ff38cd, #ff56d3, #ff6dd9, #ff81de, #ff93e3, #ff93e3, #ff93e3, #ff93e3, #ff81de, #ff6dd9, #ff56d3, #ff38cd);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-shadow: -1px 0px 17px #FF38CD;
+}
+.menu_items {
+    margin-right: 2vw;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 4vh;
+}
+.background_div {
+    min-height: 68vh;
+    padding-bottom: 2vh;
+    background:
+    -webkit-gradient(linear, left top, left bottom, color-stop(25%, black), color-stop(75%, transparent)),
+    radial-gradient(circle farthest-side at 50% 25%, transparent 0%, transparent 52%, #8c2271 52%, #8c2271 52.2%, transparent 52.2%, transparent 73%, #8c2271 73%, #8c2271 73.2%, transparent 73.2%, transparent 100%, transparent 100%, #8c2271 100%, #8c2271 100.2%, transparent 100.2%),
+    radial-gradient(circle farthest-side at 50% 25%, transparent 0%, transparent 25%, #8c2271 25%, #8c2271 25.2%, transparent 25.2%, transparent 37%, #8c2271 37%, #8c2271 37.2%, transparent 37.2%, transparent 52%, #8c2271 52%, #8c2271 52.2%, transparent 52.2%, transparent 100%),
+    /* linear-gradient(transparent, 25%, #ff38cd 25%, 25.2%, transparent 25.2%, 28%, #ff38cd 28%, 28.2%, transparent 28.2%, 37%, #ff38cd 37%, 37.2%, transparent 37.2%, 52%, #ff38cd 52%, 52.2%, transparent 52.2%, 73%, #ff38cd 73%, 73.2%, transparent 73.2%), */
+    repeating-conic-gradient(
+    from 3deg at 50% 25%,
+    #8c2271 0deg 0.3deg,
+    black 0deg 10deg);
+    background:
+    -o-linear-gradient(top, black 25%, transparent 75%),
+    -o-radial-gradient(50% 25%, circle farthest-side, transparent 0%, transparent 52%, #8c2271 52%, #8c2271 52.2%, transparent 52.2%, transparent 73%, #8c2271 73%, #8c2271 73.2%, transparent 73.2%, transparent 100%, transparent 100%, #8c2271 100%, #8c2271 100.2%, transparent 100.2%),
+    -o-radial-gradient(50% 25%, circle farthest-side, transparent 0%, transparent 25%, #8c2271 25%, #8c2271 25.2%, transparent 25.2%, transparent 37%, #8c2271 37%, #8c2271 37.2%, transparent 37.2%, transparent 52%, #8c2271 52%, #8c2271 52.2%, transparent 52.2%, transparent 100%),
+    /* linear-gradient(transparent, 25%, #ff38cd 25%, 25.2%, transparent 25.2%, 28%, #ff38cd 28%, 28.2%, transparent 28.2%, 37%, #ff38cd 37%, 37.2%, transparent 37.2%, 52%, #ff38cd 52%, 52.2%, transparent 52.2%, 73%, #ff38cd 73%, 73.2%, transparent 73.2%), */
+    repeating-conic-gradient(
+    from 3deg at 50% 25%,
+    #8c2271 0deg 0.3deg,
+    black 0deg 10deg);
+    background:
+    linear-gradient(to bottom, black 25%, transparent 75%),
+    radial-gradient(circle farthest-side at 50% 25%, transparent 0%, transparent 52%, #8c2271 52%, #8c2271 52.2%, transparent 52.2%, transparent 73%, #8c2271 73%, #8c2271 73.2%, transparent 73.2%, transparent 100%, transparent 100%, #8c2271 100%, #8c2271 100.2%, transparent 100.2%),
+    radial-gradient(circle farthest-side at 50% 25%, transparent 0%, transparent 25%, #8c2271 25%, #8c2271 25.2%, transparent 25.2%, transparent 37%, #8c2271 37%, #8c2271 37.2%, transparent 37.2%, transparent 52%, #8c2271 52%, #8c2271 52.2%, transparent 52.2%, transparent 100%),
+    /* linear-gradient(transparent, 25%, #ff38cd 25%, 25.2%, transparent 25.2%, 28%, #ff38cd 28%, 28.2%, transparent 28.2%, 37%, #ff38cd 37%, 37.2%, transparent 37.2%, 52%, #ff38cd 52%, 52.2%, transparent 52.2%, 73%, #ff38cd 73%, 73.2%, transparent 73.2%), */
+    repeating-conic-gradient(
+    from 3deg at 50% 25%,
+    #8c2271 0deg 0.3deg,
+    black 0deg 10deg);
+}
+@-moz-document url-prefix() {
+    .background_div, .content_div {
+        background-color: black;
+    }
+}
+.content_div {
+    color: #d1d1c5;
+    border-color: #5da4a6;
+    -webkit-box-shadow: 0px 0px 4px #5da4a6;
+            box-shadow: 0px 0px 4px #5da4a6;
+    border-style: solid;
+    border-width: 1px;
+    min-height: 64vh;
+    background: rgba(0,0,0,0.5);
+    margin-left: 2vw;
+    margin-right: 2vw;
+}
+.left_menu {
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 2vw;
+    margin-top: 2vh;
+    width: 10%;
+    min-height: 60vh;
+}
+li {
+    font-size: 12px;
+}
+.docs_content {
+    vertical-align: top;
+    display: inline-block;
+    width: 80%;
+    margin-bottom: 2vh;
+}
+.left_menu_items {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1vh;
+}
+.metrics_docs_right, .metrics_docs_left {
+    vertical-align: top;
+    display: inline-block;
+}
+.metrics_docs_right {
+    margin-top: 3vh;
+    width: 60%;
+    margin-left: 10%;
+}
+.footer_div {
+    background-color: black;
+    height: 10vh;
+    width: 100%;
+    display:table;
+    color: white;
+    text-align: center;
+    font-size: 2vh;
+}
+.footer_span {
+    display:table-cell;
+    vertical-align: middle;
+    color: white;
+}
+.menu_items {
+    text-decoration:none;
+    color: #c6e2ff;
+}
+.footer_item {
+    text-decoration:none;
+    color: #c6e2ff;
+}
+.button, .link {
+    text-decoration:none;
+    color: #c6e2ff;
+}
+.button:hover, .footer_item:hover, .menu_items:hover, .left_menu_items:hover, .metric_link:hover, .link:hover {
+    -webkit-animation: neon_blue .08s ease-in-out infinite alternate;
+    animation: neon_blue .08s ease-in-out infinite alternate;
+    cursor: pointer;
+}
+#logo:hover {
+    -webkit-animation: neon_pink .08s ease-in-out infinite alternate;
+            animation: neon_pink .08s ease-in-out infinite alternate;
+}
+@-webkit-keyframes neon_blue {
+  from {
+    text-shadow:
+    0 0 6px rgba(202,228,225,0.92),
+    0 0 30px rgba(202,228,225,0.34),
+    0 0 12px rgba(30,132,242,0.52),
+    0 0 21px rgba(30,132,242,0.92),
+    0 0 34px rgba(30,132,242,0.78),
+    0 0 54px rgba(30,132,242,0.92);
+  }
+  to {
+    text-shadow:
+    0 0 6px rgba(202,228,225,0.98),
+    0 0 30px rgba(202,228,225,0.42),
+    0 0 12px rgba(30,132,242,0.58),
+    0 0 22px rgba(30,132,242,0.84),
+    0 0 38px rgba(30,132,242,0.88),
+    0 0 60px rgba(30,132,242,1);
+  }
+}
+@keyframes neon_blue {
+  from {
+    text-shadow:
+    0 0 6px rgba(202,228,225,0.92),
+    0 0 30px rgba(202,228,225,0.34),
+    0 0 12px rgba(30,132,242,0.52),
+    0 0 21px rgba(30,132,242,0.92),
+    0 0 34px rgba(30,132,242,0.78),
+    0 0 54px rgba(30,132,242,0.92);
+  }
+  to {
+    text-shadow:
+    0 0 6px rgba(202,228,225,0.98),
+    0 0 30px rgba(202,228,225,0.42),
+    0 0 12px rgba(30,132,242,0.58),
+    0 0 22px rgba(30,132,242,0.84),
+    0 0 38px rgba(30,132,242,0.88),
+    0 0 60px rgba(30,132,242,1);
+  }
+}
+@-webkit-keyframes neon_pink {
+  from {
+    text-shadow:
+    0 0 6px rgba(228, 202, 224, 0.92),
+    0 0 30px rgba(228, 202, 224,0.34),
+    0 0 12px rgba(242, 30, 228,0.52),
+    0 0 21px rgba(242, 30, 203,0.92),
+    0 0 34px rgba(242, 30, 214,0.78),
+    0 0 54px rgba(242, 30, 207,0.92);
+  }
+  to {
+    text-shadow:
+    0 0 6px rgba(228, 202, 223,0.98),
+    0 0 30px rgba(228, 202, 224,0.42),
+    0 0 12px rgba(242, 30, 210,0.58),
+    0 0 22px rgba(242, 30, 175,0.84),
+    0 0 38px rgba(242, 30, 217,0.88),
+    0 0 60px rgba(242, 30, 200,1);
+  }
+}
+@keyframes neon_pink {
+  from {
+    text-shadow:
+    0 0 6px rgba(228, 202, 224, 0.92),
+    0 0 30px rgba(228, 202, 224,0.34),
+    0 0 12px rgba(242, 30, 228,0.52),
+    0 0 21px rgba(242, 30, 203,0.92),
+    0 0 34px rgba(242, 30, 214,0.78),
+    0 0 54px rgba(242, 30, 207,0.92);
+  }
+  to {
+    text-shadow:
+    0 0 6px rgba(228, 202, 223,0.98),
+    0 0 30px rgba(228, 202, 224,0.42),
+    0 0 12px rgba(242, 30, 210,0.58),
+    0 0 22px rgba(242, 30, 175,0.84),
+    0 0 38px rgba(242, 30, 217,0.88),
+    0 0 60px rgba(242, 30, 200,1);
+  }
+}

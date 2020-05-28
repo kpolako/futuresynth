@@ -1,5 +1,12 @@
 $(function(){
     $("#submit_test").bind("click", function() {
+
+        var formVal = formValidation();
+
+        if (formVal === null || formVal === false) {
+            return;
+        }
+
         $('#form_div').fadeOut(300, function(){ $(this).remove();});
 
         $(".content_div").fadeIn(1500, function() {
@@ -36,41 +43,58 @@ $(function(){
             headers: {'Content-type': 'application/json'},
         });
         request.done(function(data){
-            console.log(data);
-            console.log(data.dom_content_loaded);
-
             $('#triangle').fadeOut(300, function(){ $(this).remove();});
 
             $(".content_div").fadeIn(1500, function() {
             var contentDiv = document.getElementById('content_div');
-
-            var obj = "text/json;charset=utf-8," + encodeURIComponent(data['report']);
-            var download_html = '<a href="data:' + obj + '" download="lighthouse_report.json">Download ' + data['description'] + ' report</a><br>';
-
             var html = '<div style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%; display: inline-block; width: 48%; vertical-align: top;">';
-            html += download_html;
 
-            var timingMarks = '<h4>Timing marks:</h4><span>'
-            var paintMetrics = '<h4>Paint metrics:</h4><span>'
-            var calculatedMetrics = '<h4>Calculated metrics:</h4><span>'
+            if (data['test_conf']['type'] == 'lighthouse') {
+                var obj = "text/json;charset=utf-8," + encodeURIComponent(data['report']);
+                var download_html = '<a href="data:' + obj + '" download="lighthouse_report.json">Download ' + data['description'] + ' report</a><br>';
 
-            for (var key in data['metrics']) {
-                if (data['metrics'].hasOwnProperty(key)) {
-                    if (data['metrics'][key]['type'] == 'timing_marks') {
-                        timingMarks += ''+data['metrics'][key]['name']+': '+data['metrics'][key]['value']+'<br>';
-                    } else if (data['metrics'][key]['type'] == 'paint_metrics') {
-                        paintMetrics += ''+data['metrics'][key]['name']+': '+data['metrics'][key]['value']+'<br>';
-                    } else if (data['metrics'][key]['type'] == 'calculated') {
-                        calculatedMetrics += ''+data['metrics'][key]['name']+': '+data['metrics'][key]['value']+'<br>';
-                    }
-//                    console.log(data['metrics'][key]['name'] + " -> " + data['metrics'][key]['value']);
+                html += download_html;
+                var metrics = '<h4>Result:</h4><span>'
+
+                for (var key in data['metrics']) {
+                    metrics += ''+data['metrics'][key]['name']+': '+data['metrics'][key]['value']+'<br>';
                 }
-            }
-            timingMarks += '</span>';
-            paintMetrics += '</span>';
-            calculatedMetrics += '</span>';
+                metrics += '</span>';
 
-            html += timingMarks+paintMetrics+calculatedMetrics+'</div>';
+                html += metrics+'</div>';
+
+            } else if (data['test_conf']['type'] == 'selenium') {
+                var obj = "text/json;charset=utf-8," + encodeURIComponent(data['report']);
+                var download_html = '<a href="data:' + obj + '" download="har_report.har">Download ' + data['description'] + ' report</a><br>';
+
+                var html = '<div style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%; display: inline-block; width: 48%; vertical-align: top;">';
+                html += download_html;
+
+                var timingMarks = '<h4>Timing marks:</h4><span>'
+                var paintMetrics = '<h4>Paint metrics:</h4><span>'
+                var calculatedMetrics = '<h4>Calculated metrics:</h4><span>'
+
+                for (var key in data['metrics']) {
+                    console.log(data['metrics'][key]);
+                    if (data['metrics'].hasOwnProperty(key)) {
+                        if (data['metrics'][key]['type'] == 'timing_marks') {
+                            timingMarks += ''+data['metrics'][key]['name']+': '+data['metrics'][key]['value']+'<br>';
+                        } else if (data['metrics'][key]['type'] == 'paint_metrics') {
+                            paintMetrics += ''+data['metrics'][key]['name']+': '+data['metrics'][key]['value']+'<br>';
+                        } else if (data['metrics'][key]['type'] == 'calculated') {
+                            calculatedMetrics += ''+data['metrics'][key]['name']+': '+data['metrics'][key]['value']+'<br>';
+                        }
+    //                    console.log(data['metrics'][key]['name'] + " -> " + data['metrics'][key]['value']);
+                    }
+                }
+                timingMarks += '</span>';
+                paintMetrics += '</span>';
+                calculatedMetrics += '</span>';
+
+                html += timingMarks+paintMetrics+calculatedMetrics+'</div>';
+            }
+
+
 
             setTimeout(function(){
                 $(html).hide().appendTo(".content_div").fadeIn(1500);}, 300);

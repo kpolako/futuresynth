@@ -6,12 +6,12 @@ dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, '../../virtualenvs/app/Lib/site-packages/browsermobproxy/browsermob-proxy-2.1.4/bin/browsermob-proxy')
 
 
-def run_selenium_har(test_conf, proxy, client):
+def run_selenium_har(test_conf, client):
     metrics = {}
     url = test_conf['url']
 
     options = webdriver.ChromeOptions()
-    mobile_emulation = {"deviceName": "Nexus 5"}
+    mobile_emulation = {"deviceName": "iPhone 6 Plus"}
     options.add_argument("--proxy-server={}".format(client.proxy))
     options.add_argument('--ignore-certificate-errors')
     if test_conf['device'] == 'mobile':
@@ -24,7 +24,7 @@ def run_selenium_har(test_conf, proxy, client):
     # resource_timings = driver.execute_script("return performance.getEntriesByType('resource')")
     paint_timings = driver.execute_script("return performance.getEntriesByType('paint')")
 
-    print(navigation_timings)
+    # print(navigation_timings)
 
     metrics['connect_end'] = {'name': 'Connect End', 'type': 'timing_marks', 'value': round(navigation_timings[0]['connectEnd'], 2)}
     metrics['connect_start'] = {'name': 'Connect Start', 'type': 'timing_marks', 'value': round(navigation_timings[0]['connectStart'], 2)}
@@ -53,13 +53,11 @@ def run_selenium_har(test_conf, proxy, client):
     metrics['redirect_time'] = {'name': 'Redirect Time', 'type': 'calculated', 'value': round(metrics['redirect_end']['value']-metrics['redirect_start']['value'], 2)}
 
 
-    time.sleep(3)
+    # time.sleep(3)
 
     har = json.dumps(client.har)
-    return {'report': har, 'metrics': metrics, 'description': 'HAR'}
-
-
-
+    driver.close()
+    return {'report': har, 'metrics': metrics, 'description': 'HAR', 'test_conf': test_conf}
 
 
 def terminate_browsermob():

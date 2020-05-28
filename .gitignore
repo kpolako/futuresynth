@@ -9,3 +9,4 @@ bmp.log
 debug.log
 server.log
 app/templates/hh.html
+conf_database/confdb.db

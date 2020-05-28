@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/index.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/loader.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/table.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}" />
+    <link href='http://fonts.googleapis.com/css?family=Chakra+Petch&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/enable_test.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/delete_test.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="menu_div">
+    <a id="logo" href="/">Future<br>&nbsp;&nbsp;&nbsp;synth</a><a class="menu_items" href="/">Wykonaj test</a><a class="menu_items" href="/plan_test">Zaplanuj test</a><a class="menu_items" href="/tests">Testy</a><a class="menu_items" href="http://localhost:8888/" target="_blank">Wyniki</a><a class="menu_items" href="/docs">Dokumentacja</a>
+</div>
+<div class="background_div">
+    <div class="content_div">
+
+                <table id="example" class="display" style="width:100%" data-order='[[ 2, "desc" ]]'>
+                <thead>
+                    <tr>
+                        <th>Nazwa</th>
+                        <th>URL</th>
+                        <th>Urządzenie</th>
+                        <th>Typ</th>
+                        <th>Interwał</th>
+                        <th>Data utworzenia</th>
+                        <th>Włączone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in tests %}
+                    <tr id="row-{{ item['name'] }}">
+                        <td class="name"><i class="fa fa-trash {{ item['name'] }}" style="float: left;"></i>{{ item['name'] }}</td>
+                        <td class="wideCol url">{{ item['url'] }}</td>
+                        <td class="device">{{ item['device'] }}</td>
+                        <td class="type">{{ item['type'] }}</td>
+                        <td class="time">{{ item['time_number'] }} {{ item['time_type'] }}</td>
+                        <td class="created_date">{{ item['created_date'] }}</td>
+                        <td class="enabled {{ item['name'] }}">
+                            {% if item['enabled'] %}
+                            <input type="checkbox" class="enable-test {{ item['name'] }}" checked>
+                            {% else %}
+                            <input type="checkbox" class="enable-test {{ item['name'] }}">
+                            {% endif %}
+                        </td>
+                    </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
+<div class="footer_div">
+    <span class="footer_span"><a class="footer_item" href="https://github.com/kpolako/futuresynth">Github</a><br><a>konradpolakowska@gmail.com</a></span>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable(
+            {
+                drawCallback: function(settings) {
+                    var pagination = $(this).closest('.dataTables_wrapper').find('.dataTables_paginate');
+                    pagination.toggle(this.api().page.info().pages > 1);
+                },
+                "pagingType": "numbers",
+                "language": {
+                    "search": "Szukaj:",
+                    "paginate": {
+                    "first":      "Pierwszy",
+                    "last":       "Ostatni",
+                    "next":       "Następny",
+                    "previous":   "Poprzedni"
+                    },
+                    "lengthMenu":     "Pokazuj _MENU_ wyników",
+                    "emptyTable":     "Brak wyników w bazie konfiguracyjnej",
+                    "info":           "Pokazano _START_ do _END_ z _TOTAL_ wyników",
+                    "loadingRecords": "Ładowanie...",
+                    "processing":     "Przetwarzanie...",
+                    "zeroRecords":    "Nie znaleziono wyników odpowiadających parametrom wyszukiwania",
+                    "infoEmpty":      "Znaleziono 0",
+                    "infoFiltered":   "(z _MAX_ wszystkich wyników)"
+                }
+
+            }
+        );
+    } );
+</script>
+</body>
+</html>
