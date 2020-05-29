@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/index.css') }}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/loader.css') }}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/table.css') }}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('app.static', filename='css/index.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('app.static', filename='css/loader.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('app.static', filename='css/table.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('app.static', filename='css/jquery.dataTables.min.css') }}" />
     <link href='http://fonts.googleapis.com/css?family=Chakra+Petch&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/enable_test.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/delete_test.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('app.static', filename='js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('app.static', filename='js/enable_test.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('app.static', filename='js/delete_test.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="menu_div">
-    <a id="logo" href="/">Future<br>&nbsp;&nbsp;&nbsp;synth</a><a class="menu_items" href="/">Wykonaj test</a><a class="menu_items" href="/plan_test">Zaplanuj test</a><a class="menu_items" href="/tests">Testy</a><a class="menu_items" href="http://localhost:8888/" target="_blank">Wyniki</a><a class="menu_items" href="/docs">Dokumentacja</a>
+    <a id="logo" href="{{ url_for('app.route_home') }}">Future<br>&nbsp;&nbsp;&nbsp;synth</a><a class="menu_items" href="{{ url_for('app.route_home') }}">Wykonaj test</a><a class="menu_items" href="{{ url_for('app.route_plan_test') }}">Zaplanuj test</a><a class="menu_items" href="{{ url_for('app.route_all_tests') }}">Testy</a><a class="menu_items" href="https://futuresynth.westeurope.cloudapp.azure.com/" target="_blank">Wyniki</a><a class="menu_items" href="{{ url_for('app.route_docs') }}">Dokumentacja</a>
 </div>
 <div class="background_div">
     <div class="content_div">

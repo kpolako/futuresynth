@@ -4,8 +4,8 @@ from flask_cors import CORS
 import requests, json
 
 
-bp_app = Blueprint('app', __name__, static_folder='static')
-bp_test = Blueprint('test', __name__)
+bp_app = Blueprint('app', __name__, static_folder='static', static_url_path='/futuresynth/static', template_folder='templates')
+bp_test = Blueprint('test', __name__, url_prefix='/futuresynth')
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -43,6 +43,6 @@ def route_all_tests():
 def create_app():
     app = Flask(__name__)
     CORS(app)
-    app.register_blueprint(bp_app)
-    app.register_blueprint(bp_test)
+    app.register_blueprint(bp_app, url_prefix='/futuresynth')
+    app.register_blueprint(bp_test, url_prefix='/futuresynth')
     return app
