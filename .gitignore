@@ -1,4 +1,5 @@
 /virtualenvs
+/venv
 .idea
 .pytest_cache
 app/__pycache__

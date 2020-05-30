@@ -1,5 +1,5 @@
 from flask import Flask, Blueprint, request, current_app
-import logging, sys, os, json, influxdb
+import logging, sys, os, json, influxdb, requests
 from flask_cors import CORS
 from .audits import lighthouse_audit, selenium_audit, scheduler
 from .conf import run_browsermob, influx_connector
@@ -86,6 +86,14 @@ def route_check_entity_name():
 def route_plan_test_run():
     test_conf = request.get_json()
     print(test_conf)
+    valid_url = None
+    try:
+        valid_url = requests.get(test_conf['url'])
+    except Exception as e:
+        return {'error': 'Tej strony nie da się otworzyć.'}
+    finally:
+        if not valid_url or valid_url.status_code or valid_url.status_code > 399:
+            return {'error': 'Tej strony nie da się otworzyć.'}
     scheduler.schedule_job(current_app.config['scheduler_obj'], test_conf, kwargs={'client': current_app.config['client']})
     db = current_app.config['db']
     table = current_app.config['Conf_class']
@@ -99,10 +107,22 @@ def route_execute_test_run():
     test_conf = request.get_json()
     print(test_conf)
     result = None
-    if test_conf['type'] == 'lighthouse':
-        result = lighthouse_audit.run_lighthouse(test_conf)
-    elif test_conf['type'] == 'selenium':
-        result = selenium_audit.run_selenium_har(test_conf, current_app.config['client'])
+    valid_url = None
+    try:
+        valid_url = requests.get(test_conf['url'])
+    except Exception as e:
+        return {'error': 'Tej strony nie da się otworzyć.'}
+    finally:
+        if not valid_url or valid_url.status_code or valid_url.status_code > 399:
+            return {'error': 'Tej strony nie da się otworzyć.'}
+    try:
+        if test_conf['type'] == 'lighthouse':
+            result = lighthouse_audit.run_lighthouse(test_conf)
+        elif test_conf['type'] == 'selenium':
+            result = selenium_audit.run_selenium_har(test_conf, current_app.config['client'])
+    except Exception as e:
+        print('e: ', e)
+        result = {'error': 'Coś poszło nie tak!'}
     return result
 
 

@@ -47,8 +47,11 @@ $(function(){
 
             $(".content_div").fadeIn(300, function() {
             var contentDiv = document.getElementById('content_div');
-
-            var html = '<h4>'+data+'</h4>';
+            if (data['error']) {
+                var html = '<h4>'+data['error']+'</h4>';
+            } else {
+                var html = '<h4>'+data+'</h4>';
+            }
 
             setTimeout(function(){
                 $(html).hide().appendTo(".content_div").fadeIn(300);}, 300);

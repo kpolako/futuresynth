@@ -46,6 +46,11 @@ $(function(){
             $('#triangle').fadeOut(300, function(){ $(this).remove();});
 
             $(".content_div").fadeIn(1500, function() {
+            if (data['error']) {
+                var html = '<div style="margin-top: 2%; margin-bottom: 2%; display: inline-block; width: 48%; vertical-align: top;">'+data['error']+'</div>';
+                setTimeout(function(){$(html).hide().appendTo(".content_div").fadeIn(1500);}, 300);
+                return;
+            }
             var contentDiv = document.getElementById('content_div');
             var html = '<div style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%; display: inline-block; width: 48%; vertical-align: top;">';
 
@@ -96,8 +101,7 @@ $(function(){
 
 
 
-            setTimeout(function(){
-                $(html).hide().appendTo(".content_div").fadeIn(1500);}, 300);
+            setTimeout(function(){$(html).hide().appendTo(".content_div").fadeIn(1500);}, 300);
             });
         });
     });
