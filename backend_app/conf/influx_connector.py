@@ -56,9 +56,7 @@ def influx_connector(client, test):
             "time": t_now,
             "fields": fields
         }
-    print(data_point)
     points.append(data_point)
-    print(data_point)
     res = client.write_points(points=points)
     return 'ok'
 

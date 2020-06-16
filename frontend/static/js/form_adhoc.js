@@ -38,7 +38,7 @@ $(function(){
 
         var request = $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:4999/execute_test_run",
+            url: "https://futuresynth.westeurope.cloudapp.azure.com/futuresynth/execute_test_run",
             data: JSON.stringify(jsonData),
             headers: {'Content-type': 'application/json'},
         });
@@ -53,7 +53,6 @@ $(function(){
             }
             var contentDiv = document.getElementById('content_div');
             var html = '<div style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%; display: inline-block; width: 48%; vertical-align: top;">';
-
             if (data['test_conf']['type'] == 'lighthouse') {
                 var obj = "text/json;charset=utf-8," + encodeURIComponent(data['report']);
                 var download_html = '<a href="data:' + obj + '" download="lighthouse_report.json">Download ' + data['description'] + ' report</a><br>';
@@ -80,7 +79,7 @@ $(function(){
                 var calculatedMetrics = '<h4>Calculated metrics:</h4><span>'
 
                 for (var key in data['metrics']) {
-                    console.log(data['metrics'][key]);
+//                    console.log(data['metrics'][key]);
                     if (data['metrics'].hasOwnProperty(key)) {
                         if (data['metrics'][key]['type'] == 'timing_marks') {
                             timingMarks += ''+data['metrics'][key]['name']+': '+data['metrics'][key]['value']+'<br>';

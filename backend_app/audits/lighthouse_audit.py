@@ -2,7 +2,7 @@ import subprocess, json
 
 def run_lighthouse(test_conf):
     metrics = {}
-    cc = 'lighthouse '+test_conf['url']+' --quiet --emulated-form-factor '+test_conf['device']+' --only-categories=performance --output=json'
+    cc = 'lighthouse '+test_conf['url']+' --port=9222 --quiet --emulated-form-factor '+test_conf['device']+' --only-categories=performance --output=json'
     result_json = subprocess.check_output(cc, shell=True)
     result_dict = json.loads(result_json)
     result_dict_audits = result_dict['audits']

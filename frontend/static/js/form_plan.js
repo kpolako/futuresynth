@@ -39,7 +39,7 @@ $(function(){
 
         var request = $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:4999/plan_test_run",
+            url: "https://futuresynth.westeurope.cloudapp.azure.com/futuresynth/plan_test_run",
             data: JSON.stringify(jsonData),
             headers: {'Content-type': 'application/json'},
         });

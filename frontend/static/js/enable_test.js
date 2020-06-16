@@ -25,7 +25,7 @@ $(function(){
             };
             $.ajax({
                 type: "POST",
-                url: "http://127.0.0.1:4999/enable_test",
+                url: "https://futuresynth.westeurope.cloudapp.azure.com/futuresynth/enable_test",
                 data: JSON.stringify(jsonData),
                 headers: {'Content-type': 'application/json'}
             });

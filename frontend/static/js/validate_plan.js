@@ -8,10 +8,10 @@ function formValidation() {
 
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:4999/check_name?name="+testName,
+            url: "https://futuresynth.westeurope.cloudapp.azure.com/futuresynth/check_name?name="+testName,
             async: false
         }).done(function(data){
-            ifExist = JSON.parse(data).exists;
+            ifExist = data.exists;
         });
 
         function changeInput (id, text_err, text) {

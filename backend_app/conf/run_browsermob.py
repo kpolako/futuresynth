@@ -2,7 +2,7 @@ from browsermobproxy import Server
 import os
 
 dirname = os.path.dirname(__file__)
-filename = os.path.join(dirname, '../../venv/Lib/site-packages/browsermob-proxy-2.1.4/bin/browsermob-proxy')
+filename = os.path.join(dirname, '../../virtualenvs/Lib/site-packages/browsermob-proxy-2.1.4/bin/browsermob-proxy')
 
 
 class ProxyManager:

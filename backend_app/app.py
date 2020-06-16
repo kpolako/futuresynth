@@ -19,7 +19,7 @@ logger.addHandler(logging.StreamHandler(sys.stdout))
 logger.propagate = False
 
 
-#for quick checking if docker & nginx are up and running
+#for quick checking if nginx is up and running
 @bp_test.route('/health', methods=['GET'])
 def route_test():
     return 'ok'
@@ -85,15 +85,15 @@ def route_check_entity_name():
 @bp_app.route('/plan_test_run', methods=['POST'])
 def route_plan_test_run():
     test_conf = request.get_json()
-    print(test_conf)
-    valid_url = None
-    try:
-        valid_url = requests.get(test_conf['url'])
-    except Exception as e:
-        return {'error': 'Tej strony nie da się otworzyć.'}
-    finally:
-        if not valid_url or valid_url.status_code or valid_url.status_code > 399:
-            return {'error': 'Tej strony nie da się otworzyć.'}
+    # valid_url = None
+    # valid_url = requests.get(test_conf['url'])
+    # try:
+    #     valid_url = requests.get(test_conf['url'])
+    # except Exception as e:
+    #     return {'error': 'Tej strony nie da się otworzyć.'}
+    # finally:
+    #     if not valid_url or not valid_url.status_code or valid_url.status_code > 399:
+    #         return {'error': 'Tej strony nie da się otworzyć.'}
     scheduler.schedule_job(current_app.config['scheduler_obj'], test_conf, kwargs={'client': current_app.config['client']})
     db = current_app.config['db']
     table = current_app.config['Conf_class']
@@ -105,23 +105,22 @@ def route_plan_test_run():
 @bp_app.route('/execute_test_run', methods=['POST'])
 def route_execute_test_run():
     test_conf = request.get_json()
-    print(test_conf)
     result = None
-    valid_url = None
-    try:
-        valid_url = requests.get(test_conf['url'])
-    except Exception as e:
-        return {'error': 'Tej strony nie da się otworzyć.'}
-    finally:
-        if not valid_url or valid_url.status_code or valid_url.status_code > 399:
-            return {'error': 'Tej strony nie da się otworzyć.'}
+    # valid_url = None
+    # valid_url = requests.get(test_conf['url'])
+    # try:
+    #     valid_url = requests.get(test_conf['url'])
+    # except Exception as e:
+    #     return {'error': 'Tej strony nie da się otworzyć.'}
+    # finally:
+    #     if not valid_url or not valid_url.status_code or valid_url.status_code > 399:
+    #         return {'error': 'Tej strony nie da się otworzyć.'}
     try:
         if test_conf['type'] == 'lighthouse':
             result = lighthouse_audit.run_lighthouse(test_conf)
         elif test_conf['type'] == 'selenium':
             result = selenium_audit.run_selenium_har(test_conf, current_app.config['client'])
     except Exception as e:
-        print('e: ', e)
         result = {'error': 'Coś poszło nie tak!'}
     return result
 
