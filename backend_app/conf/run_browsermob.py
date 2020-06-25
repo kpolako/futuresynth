@@ -2,7 +2,7 @@ from browsermobproxy import Server
 import os
 
 dirname = os.path.dirname(__file__)
-filename = os.path.join(dirname, '../../virtualenvs/Lib/site-packages/browsermob-proxy-2.1.4/bin/browsermob-proxy')
+filename = os.path.join(dirname, '../../browsermob-proxy-2.1.4/bin/browsermob-proxy')
 
 
 class ProxyManager:
@@ -29,23 +29,3 @@ class ProxyManager:
     @property
     def server(self):
         return self.__server
-
-
-# def run_selenium(url):
-#     proxy = ProxyManager()
-#     server = proxy.start_server()
-#     client = proxy.start_client()
-#     client.new_har("options={'captureContent': True}")
-#     print(client.proxy)
-#
-#     options = webdriver.ChromeOptions()
-#     options.add_argument("--proxy-server={}".format(client.proxy))
-#     options.add_argument('--ignore-certificate-errors')
-#     driver = webdriver.Chrome(options=options)
-#     driver.get(url)
-#     time.sleep(3)
-#
-#     # print(client.har)
-#     # print(json.dumps(client.har))
-#
-#     server.stop()

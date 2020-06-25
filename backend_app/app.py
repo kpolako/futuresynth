@@ -1,5 +1,5 @@
 from flask import Flask, Blueprint, request, current_app
-import logging, sys, os, json, influxdb, requests
+import os, json, influxdb
 from flask_cors import CORS
 from .audits import lighthouse_audit, selenium_audit, scheduler
 from .conf import run_browsermob, influx_connector
@@ -13,13 +13,8 @@ from apscheduler.events import EVENT_JOB_EXECUTED, EVENT_JOB_ERROR
 bp_app = Blueprint('app', __name__, static_folder='static')
 bp_test = Blueprint('test', __name__)
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-logger.addHandler(logging.StreamHandler(sys.stdout))
-logger.propagate = False
 
-
-#for quick checking if nginx is up and running
+#for quick checking if app and/or nginx is up and running
 @bp_test.route('/health', methods=['GET'])
 def route_test():
     return 'ok'
@@ -85,15 +80,6 @@ def route_check_entity_name():
 @bp_app.route('/plan_test_run', methods=['POST'])
 def route_plan_test_run():
     test_conf = request.get_json()
-    # valid_url = None
-    # valid_url = requests.get(test_conf['url'])
-    # try:
-    #     valid_url = requests.get(test_conf['url'])
-    # except Exception as e:
-    #     return {'error': 'Tej strony nie da się otworzyć.'}
-    # finally:
-    #     if not valid_url or not valid_url.status_code or valid_url.status_code > 399:
-    #         return {'error': 'Tej strony nie da się otworzyć.'}
     scheduler.schedule_job(current_app.config['scheduler_obj'], test_conf, kwargs={'client': current_app.config['client']})
     db = current_app.config['db']
     table = current_app.config['Conf_class']
@@ -106,15 +92,6 @@ def route_plan_test_run():
 def route_execute_test_run():
     test_conf = request.get_json()
     result = None
-    # valid_url = None
-    # valid_url = requests.get(test_conf['url'])
-    # try:
-    #     valid_url = requests.get(test_conf['url'])
-    # except Exception as e:
-    #     return {'error': 'Tej strony nie da się otworzyć.'}
-    # finally:
-    #     if not valid_url or not valid_url.status_code or valid_url.status_code > 399:
-    #         return {'error': 'Tej strony nie da się otworzyć.'}
     try:
         if test_conf['type'] == 'lighthouse':
             result = lighthouse_audit.run_lighthouse(test_conf)

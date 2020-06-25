@@ -1,16 +1,10 @@
 from flask import Flask, Blueprint, render_template, request
-import logging, sys
 from flask_cors import CORS
 import requests, json
 
 
 bp_app = Blueprint('app', __name__, static_folder='static', static_url_path='/futuresynth/static', template_folder='templates')
 bp_test = Blueprint('test', __name__, url_prefix='/futuresynth')
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-logger.addHandler(logging.StreamHandler(sys.stdout))
-logger.propagate = False
 
 
 #for quick checking if docker & nginx are up and running

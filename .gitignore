@@ -7,7 +7,10 @@ app/__pycache__
 /pytest_cache
 .env
 bmp.log
+**/bmp.log
+**/debug.log
+**/server.log
 debug.log
 server.log
-app/templates/hh.html
 conf_database/confdb.db
+/browsermob-proxy-2.1.4
