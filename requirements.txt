@@ -28,7 +28,7 @@ idna==2.8
 importlib-metadata==0.19
 influxdb==5.3.0
 itsdangerous==1.1.0
-Jinja2==2.10.1
+Jinja2==2.11.3
 jmespath==0.9.4
 json-logging==1.0.5
 MarkupSafe==1.1.1
