@@ -19,7 +19,7 @@ edgegrid-python==1.1.1
 elasticsearch==6.8.0
 Flask==1.1.1
 Flask-Bcrypt==0.7.1
-Flask-Cors==3.0.8
+Flask-Cors==3.0.9
 Flask-SQLAlchemy
 haralyzer==1.8.0
 httpie==1.0.3
